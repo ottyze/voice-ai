@@ -25,7 +25,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/index.html", // take the HTML file from public folder
+      template: "./index.html", // take the HTML file from public folder
       filename: "index.html", // output name in the dist folder
     }),
     new Dotenv() // 👈 this injects environment variables from .env
