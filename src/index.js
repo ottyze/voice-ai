@@ -7,7 +7,8 @@ const vapiTyping = document.getElementById("vapiTyping");
 const vapiStatusMessage = document.getElementById("vapiStatusMessage");
 const chatWindow = document.getElementById("chat");
 
-const vapi = new Vapi("YOUR-PUBLIC-VAPI-API-KEY");
+
+const vapi = new Vapi(process.env.VAPI_API_KEY);
 
 let connected = false;
 let assistantIsSpeaking = false;
@@ -40,7 +41,7 @@ vapi.on("speech-end", function () {
 
 vapi.on("message", (message) => {
   if (message.type === "function-call") {
-    // If the ChangeColor function was calles
+    // If the ChangeColor function was called
     if (message.functionCall && message.functionCall.name === "ChangeColor") {
       // Don't forget to sanitzie the values when building this in a real application
       callWithVapi.style.backgroundColor =
@@ -142,15 +143,15 @@ function updateUI() {
 }
 
 const assistantOptions = {
-  name: "Lisa",
+  name: "Pookie",
   voice: {
-    voiceId: "sarah",
-    provider: "11labs",
-    stability: 0.5,
-    similarityBoost: 0.75,
+    voiceId: "Paige",
+    provider: "vapi",
+    // stability: 0.5,
+    // similarityBoost: 0.75,
   },
   model: {
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
     messages: [
       {
         role: "system",
@@ -194,7 +195,7 @@ const assistantOptions = {
     emotionRecognitionEnabled: true,
   },
   recordingEnabled: true,
-  firstMessage: "Hello, this is Jannis. How may I assist you today?",
+  firstMessage: "Yooo what's up I'm  pookie dookie. what's goood?",
   voicemailMessage:
     "You've reached our voicemail. Please leave a message after the beep, and we'll get back to you as soon as possible.",
   endCallFunctionEnabled: false,
@@ -224,3 +225,4 @@ const assistantOptions = {
   hipaaEnabled: false,
   voicemailDetectionEnabled: false,
 };
+
